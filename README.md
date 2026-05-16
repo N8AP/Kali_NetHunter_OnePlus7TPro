@@ -33,14 +33,13 @@
 ### 5. Disable OOS Updates and Resolve Battery Drain
 1. `su -c pm disable com.oneplus.opbackup` or `resetprop ctl.stop oneplus_brain_service`
 2. Create a file named `stop_oneplus_service.sh`.
-3. Add the following to the file:
-
-`sh
-#!/bin/sh
-resetprop ctl.stop oneplus_brain_service`
-
+3. Add the following to the file: `sh #!/bin/sh resetprop ctl.stop oneplus_brain_service`
 4. `adb push stop_oneplus_service.sh /sdcard/`
 5. `adb shell` ; `su`
 6. `mv /sdcard/stop_oneplus_service.sh /data/adb/service.d`
 7. `chmod +x /data/adb/service.d/stop_oneplus_service.sh`
 8. Reboot system
+
+### 6. Disabling statistics collection
+1. `adb shell` ; `su`
+2. `pm uninstall -k --user 0 net.oneplus.odm`
